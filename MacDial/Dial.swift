@@ -143,14 +143,12 @@ class Dial
                 let buttonState = bytes[1]&1 == 1 ? ButtonState.pressed : .released
                 
                 let rotation = { () -> Rotation? in
-                    switch bytes[2] {
-                        case 1:
-                            return .Clockwise(1)
-                        case 0xff:
-                            return .CounterClockwise(1)
-                        default:
-                            return nil
-                }}()
+                    if (bytes[2] < 128) {
+                        return .Clockwise(Int(bytes[2]))
+                    } else {
+                        return .CounterClockwise(256 - Int(bytes[2]))
+                    }
+                }()
                 
                 return .dial(buttonState, rotation)
             default:
