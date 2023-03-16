@@ -1,0 +1,24 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/nicklockwood/SwiftFormat
+    rev: 0.51.2
+    hooks:
+      - id: swiftformat
+
+  - repo: https://github.com/realm/SwiftLint
+    rev: 0.50.3
+    hooks:
+      - id: swiftlint
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.2
+    hooks:
+      - id: shellcheck
+        args: ['-x']
